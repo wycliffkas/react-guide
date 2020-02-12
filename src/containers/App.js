@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import classes from "./App.module.css";
 import Cockpit from "../components/Cockpit";
 import Persons from "../components/Persons";
+import AuthContext from "../context/auth-context";
 
 class App extends Component {
   state = {
@@ -74,14 +75,19 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
+        <AuthContext.Provider 
+        value={{
+          authenticated: this.state.authenticated,
+          login: this.loginHandler
+        }}>
         <Cockpit
           showPersons={this.state.showPersons}
           persons={this.state.persons}
           clicked={this.togglePersonsHandler}
-          login={this.loginHandler}
         />
         {persons}
         {this.state.changeCounter}
+        </AuthContext.Provider>
       </div>
     );
   }
