@@ -9,7 +9,6 @@ const Persons = props =>
         name={person.name}
         age={person.age}
         changed={event => props.changed(event, person.id)}
-        isAuth={props.isAuthenticated}
       />
     );
   });
